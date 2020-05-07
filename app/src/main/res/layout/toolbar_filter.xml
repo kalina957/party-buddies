@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+    android:id="@+id/toolbarFilter"
+    app:layout_scrollFlags="scroll|enterAlways">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="5dp">
+
+        <Button
+            android:id="@+id/btnFilterToday"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/round_tab_btn"
+            android:text="Today"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btnFilterWeek"
+            app:layout_constraintEnd_toStartOf="@+id/btnFilterWeek"
+            app:layout_constraintStart_toEndOf="@+id/imageButton" />
+
+        <Button
+            android:id="@+id/btnFilterDate"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/round_tab_btn"
+            android:text="Date"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnFilterWeek"
+            app:layout_constraintTop_toBottomOf="@+id/editSearchParties" />
+
+        <Button
+            android:id="@+id/btnFilterWeek"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/round_tab_btn"
+            android:text="Week"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btnFilterDate"
+            app:layout_constraintEnd_toStartOf="@+id/btnFilterDate"
+            app:layout_constraintStart_toEndOf="@+id/btnFilterToday" />
+
+        <EditText
+            android:id="@+id/editSearchParties"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:autofillHints=""
+            android:background="@drawable/round_tab_btn"
+            android:ems="10"
+            android:hint="@string/search_party"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageViewSearch"
+            android:layout_width="30dp"
+            android:layout_height="32dp"
+            android:contentDescription="Search icon"
+            app:layout_constraintBottom_toBottomOf="@+id/editSearchParties"
+            app:layout_constraintEnd_toEndOf="@+id/editSearchParties"
+            app:layout_constraintTop_toTopOf="@+id/editSearchParties"
+            app:srcCompat="@drawable/ic_search_black_24dp" />
+
+        <ImageView
+            android:id="@+id/imageViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:translationZ="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnFilterDate"
+            app:layout_constraintEnd_toEndOf="@+id/btnFilterDate"
+            app:layout_constraintTop_toTopOf="@+id/btnFilterDate"
+            app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="33dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/round_tab_btn"
+            app:layout_constraintEnd_toStartOf="@+id/btnFilterToday"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editSearchParties"
+            app:srcCompat="@drawable/ic_filter_list_black_24dp" />
+
+        <ImageView
+            android:id="@+id/imageViewWeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:translationZ="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnFilterWeek"
+            app:layout_constraintEnd_toEndOf="@+id/btnFilterWeek"
+            app:layout_constraintTop_toTopOf="@+id/btnFilterWeek"
+            app:srcCompat="@drawable/ic_view_week_black_24dp" />
+
+        <ImageView
+            android:id="@+id/imageViewToday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:translationZ="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnFilterToday"
+            app:layout_constraintEnd_toEndOf="@+id/btnFilterToday"
+            app:layout_constraintTop_toTopOf="@+id/btnFilterToday"
+            app:srcCompat="@drawable/ic_today_black_24dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.Toolbar>

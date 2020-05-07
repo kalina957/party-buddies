@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">PartyBuddies</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">Enter your password</string>
+
+    <string-array name="cities">
+        <item>Eindhoven</item>
+        <item>Utrecht</item>
+        <item>Amsterdam</item>
+        <item>Den Hague</item>
+    </string-array>
+    <string name="title_activity_main_tab">MainTabActivity</string>
+    <string name="find_party_tab">Find parties</string>
+    <string name="your_party_tab">Your parties</string>
+    <string name="party_type">Party Type</string>
+    <string name="city">City</string>
+    <string name="party_buddies">Party Buddies</string>
+    <string name="search_party">Search party</string>
+    <string name="add_party">Add party</string>
+    <string name="add_icon">Add icon</string>
+    <string name="party_name">Party Name</string>
+    <string name="location">Location</string>
+    <string name="address">Address</string>
+    <string name="description">Description</string>
+    <string name="starttime">StartTime</string>
+    <string name="endtime">EndTime</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="week">Week</string>
+    <string name="date">Date</string>
+    <string name="login">Login</string>
+    <string name="amount_of_people">Amount of people</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
+    <string name="join">Join</string>
+    <string name="find_buddy">Find buddy</string>
+    <string name="people_that_are_going">People that are going:</string>
+    <string name="tinder_mode">Swipe mode</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

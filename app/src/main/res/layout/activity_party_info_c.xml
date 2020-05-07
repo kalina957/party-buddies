@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/t"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarPartyInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:background="@color/colorTransparent"
+        app:layout_constraintBottom_toTopOf="@+id/switchTinderMode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/party_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorTransparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.444"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_scrollFlags="scroll|enterAlways"
+            tools:layout_editor_absoluteY="-2dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"
+            app:layout_constraintBottom_toTopOf="@+id/include"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPeopleGoing"
+            app:layout_constraintVertical_bias="0.167"
+            tools:layout_editor_absoluteX="0dp" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintT"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <HorizontalScrollView
+            android:id="@+id/scrollViewBands"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:keepScreenOn="false"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPeopleGoing">
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:chipSpacingHorizontal="8dp"
+                app:singleLine="true"
+                app:singleSelection="false">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipMusic"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="All"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    app:checkedIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_color"
+                    app:chipIcon="@drawable/music"
+                    app:chipIconVisible="true"
+                    app:rippleColor="@color/colorDarkGray" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipRock"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rock"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    app:checkedIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_color"
+                    app:chipIconVisible="true"
+                    app:rippleColor="@color/colorDarkGray" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipJazz"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jazz"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    app:checkedIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_color"
+                    app:chipIconVisible="true"
+                    app:rippleColor="@color/colorDarkGray" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipBlues"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blues"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    app:checkedIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_color"
+                    app:chipIconVisible="true"
+                    app:rippleColor="@color/colorDarkGray" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipHouse"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="House"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    app:checkedIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_color"
+                    app:chipIconVisible="true"
+                    app:rippleColor="@color/colorDarkGray" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipIndie"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Indie"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    app:checkedIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_color"
+                    app:chipIconVisible="true"
+                    app:rippleColor="@color/colorDarkGray" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipElectronic"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Electronic"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    app:checkedIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_color"
+                    app:chipIconVisible="true"
+                    app:rippleColor="@color/colorDarkGray" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipHip-Hop"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hip-Hop"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    app:checkedIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_color"
+                    app:chipIconVisible="true"
+                    app:rippleColor="@color/colorDarkGray" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTechno"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Techno"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    app:checkedIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_color"
+                    app:chipIconVisible="true"
+                    app:rippleColor="@color/colorDarkGray" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPop"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pop"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    app:checkedIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_color"
+                    app:chipIconVisible="true"
+                    app:rippleColor="@color/colorDarkGray" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/textViewPeopleGoing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/people_that_are_going"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/listViewMembers"
+            layout="@layout/activity_party_info"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@+id/textViewPeopleGoing"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_ui"
+            android:divider="@color/colorBlack"
+            android:dividerHeight="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollViewBands" />
+    <!--    <ListView-->
+    <!--        android:id="@+id/listViewMembers"-->
+    <!--        android:layout_width="357dp"-->
+    <!--        android:layout_height="274dp"-->
+    <!--        android:layout_below="@+id/textView2"-->
+    <!--        android:layout_marginStart="24dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:background="#673AB7" />-->
+
+        <Switch
+            android:id="@+id/switchTinderMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="@string/tinder_mode"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/frameLayoutTinderMode"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/listViewMembers"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPeopleGoing"
+            app:layout_constraintVertical_bias="0.0"></FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#0091EA</color>
+    <color name="colorLight_gray">#D5CFCF</color>
+    <color name="colorLight_gray2">#E6E3E3</color>
+    <color name="colorTabText">#000000</color>
+    <color name="colorTabIndicator">#7845A7</color>
+    <color name="colorTab">#90FDFDFD</color>
+    <color name="colorText">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorBlue">#0091EA</color>
+    <color name="colorPurple">#BDD5B8E9</color>
+    <color name="colorPurpleD">#B54D9DCB</color>
+    <color name="colorGreen">#4caf50</color>
+    <color name="colorDarkGray">#9e9e9e</color>
+    <color name="colorPurple2">#6200EA</color>
+    <color name="colorRed">#D50000</color>
+    <color name="colorBlueIsh">#86A8E7</color>
+
+    <color name="colorDarkBlue">#3023AE</color>
+    <color name="colorpurpleM">#C59441A2</color>
+
+    <color name="colorDetails">#ccffffff</color>
+    <color name="colorDetailsLight">#1AFFFFFF</color>
+    <color name="colorDetailsMedium">#66ffffff</color>
+
+    <color name="colorTransp">#00FFFFFF</color>
+    <color name="trans">#00FFFFFF</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+
+    <color name="black_overlay">#66000000</color>
+</resources>
