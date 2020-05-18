@@ -1,24 +1,16 @@
-package com.example.partybuddies
+package com.example.partybuddies.Activities
 
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.Resources
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.bumptech.glide.Glide
 import com.example.kalina.membersdemo.dataObj.DataLv
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.party_info.*
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.location.Location
 import android.location.LocationManager
-import android.opengl.Visibility
 import android.os.Build
 import android.os.Looper
 import android.provider.Settings
@@ -26,31 +18,25 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
-import androidx.core.graphics.toColor
-import androidx.core.view.GravityCompat
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.partybuddies.Fragments.FindBuddy_fragment
-import com.example.partybuddies.adapters.*
+import com.example.partybuddies.Models.Party
+import com.example.partybuddies.Models.User
+import com.example.partybuddies.R
+import com.example.partybuddies.Adapters.*
 import com.google.android.gms.location.*
 import com.google.android.material.chip.Chip
-import com.google.android.material.navigation.NavigationView
-import com.instabug.library.Instabug
-import com.instabug.library.Instabug.Builder
-import com.yuyakaido.android.cardstackview.*
-import kotlinx.android.synthetic.main.activity_add_party.*
 import kotlinx.android.synthetic.main.activity_party_info.*
 import kotlinx.android.synthetic.main.activity_party_info_c.*
-import kotlinx.android.synthetic.main.activity_party_info_c.view.*
-import kotlinx.android.synthetic.main.find_parties_fragment.*
+import kotlinx.android.synthetic.main.activity_party_info_c.appBarPartyInfo
+import kotlinx.android.synthetic.main.activity_party_info_c.frameLayoutTinderMode
+import kotlinx.android.synthetic.main.activity_party_info_c.switchTinderMode
+
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 
 class PartyInfoActivity : AppCompatActivity() {
@@ -73,6 +59,7 @@ class PartyInfoActivity : AppCompatActivity() {
     var alreadyInParty: Boolean = false
     private lateinit var mAdapter: UserListAdapter
     private lateinit var mRecyclerView: RecyclerView
+    private lateinit var labelPartyName: TextView
     private var users: ArrayList<User> = ArrayList()
     private val mImageUrls = java.util.ArrayList<String>()
     var ButtonsMusicGenres = java.util.ArrayList<Chip>()
@@ -103,30 +90,31 @@ class PartyInfoActivity : AppCompatActivity() {
         this.selectedParty = intent.getSerializableExtra("party") as Party
         if (this.selectedParty.userRef == "5lKMPWEGgqOKAK6WOo2k") {
             this.btnJoin.visibility = View.INVISIBLE
-            this.btnJoin.isEnabled = false
+             this.btnJoin.isEnabled = false
         } else {
             if (!this.selectedParty.usersGoingRef.isNullOrEmpty()) {
                 for (u in this.selectedParty.usersGoingRef) {
                     if (u == "5lKMPWEGgqOKAK6WOo2k") {
                         this.btnJoin.text = "Leave"
-                        this.btnJoin.background = getDrawable(R.drawable.btn_round_red)
+                        this.btnJoin.background = getDrawable(R.color.colorpurpleM)
                         this.alreadyInParty = true
                     }
                 }
             }
         }
         allUsers = ArrayList()
-        this.nameView = findViewById(R.id.textViewPartyName)
-        this.descriptionView = findViewById(R.id.textViewDescription)
-        this.timeView = findViewById(R.id.textViewTime)
+//        this.nameView = findViewById(R.id.textViewPartyName)
+        this.descriptionView = findViewById(R.id.textViewDescriptionV)
+        //this.timeView = findViewById(R.id.textViewTime)
+        this.textViewPeopleGoing.text = this.selectedParty.name;
         this.img = findViewById(R.id.imageView)
-        this.date = findViewById(R.id.textViewDate)
-        this.location = findViewById(R.id.textViewPartyLocation2)
-        this.date.text = selectedParty.date
-        this.location.text = selectedParty.location
-        nameView.text = selectedParty.name
+        //this.date = findViewById(R.id.textViewDate)
+       // this.location = findViewById(R.id.textViewPartyLocation2)
+  //      this.date.text = selectedParty.date
+    //    this.location.text = selectedParty.location
+       // nameView.text = selectedParty.name
         descriptionView.text = selectedParty.description
-        timeView.text = selectedParty.startTime + " - " + selectedParty.endTime
+       // timeView.text = selectedParty.startTime + " - " + selectedParty.endTime
         Glide.with(img).load(selectedParty.imgRef).into(img);
         this.db.collection("parties").addSnapshotListener { _, ex ->
             if (ex != null) {
@@ -136,12 +124,6 @@ class PartyInfoActivity : AppCompatActivity() {
             this.refreshList()
             Log.d("Firebase", " it's there!")
         }
-//        data.add(DataLv("Eindhoven","Steve","https://picsum.photos/seed/picsum/200/300"))
-//        data.add(DataLv("Ema","Utrecht","https://picsum.photos/seed/picsum/200/300"))
-//        data.add(DataLv("Steve","Amsterdam","https://picsum.photos/seed/picsum/200/300"))
-//        data.add(DataLv("Noah","Eindhoven","https://picsum.photos/seed/picsum/200/300"))
-//        data.add(DataLv("Steve","Den Bosch","https://picsum.photos/seed/picsum/200/300"))
-//        data.add(DataLv("Ellen","Eindhoven","https://picsum.photos/seed/picsum/200/300"))
 
 
        // val imageView = findViewById(R.id.imageView) as ImageView
@@ -153,6 +135,10 @@ class PartyInfoActivity : AppCompatActivity() {
         this.switchTinderMode.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 scrollBar.visibility = View.GONE
+                btnJoin.visibility = View.GONE
+                textViewDescriptionV.visibility = View.GONE
+                textViewDescriptionS.visibility = View.GONE
+                textViewParticipants.visibility = View.GONE
                 this.recyclerUsers.visibility = View.GONE
                 val frame: FrameLayout = findViewById(R.id.frameLayoutTinderMode)
                 mFragment = FindBuddy_fragment(this.selectedParty)
@@ -170,6 +156,10 @@ class PartyInfoActivity : AppCompatActivity() {
                 scrollBar.visibility = View.VISIBLE
                 this.frameLayoutTinderMode.visibility = View.GONE
                 this.recyclerUsers.visibility = View.VISIBLE
+                btnJoin.visibility = View.VISIBLE
+                textViewDescriptionV.visibility = View.VISIBLE
+                textViewDescriptionS.visibility = View.VISIBLE
+                textViewParticipants.visibility = View.VISIBLE
                 this.appBarPartyInfo.setExpanded(true)
             }
         }
@@ -182,7 +172,8 @@ class PartyInfoActivity : AppCompatActivity() {
 
     fun refreshList() {
         allUsers = ArrayList()
-        var user: User = User()
+        var user: User =
+            User()
         this.db.collection("users").get()
             .addOnSuccessListener { result ->
                 for (document in result) {
@@ -191,7 +182,8 @@ class PartyInfoActivity : AppCompatActivity() {
                     }
 //                    this.data.add(document.toObject(DataLv::class.java))
                     if (this.selectedParty.usersGoingRef.contains(document.id)) {
-                        Log.d("Firebase", "${document.toObject(User::class.java).name} ${document.toObject(User::class.java).musicGenres[0]}")
+                        Log.d("Firebase", "${document.toObject(User::class.java).name} ${document.toObject(
+                            User::class.java).musicGenres[0]}")
                         //Log.d("FirebaseT", "Music ${ClickChip(document.toObject(User::class.java).musicGenres)}")
 
                         if(selectedChips.count()==0 || selectedChips.contains("All")){
@@ -232,18 +224,18 @@ class PartyInfoActivity : AppCompatActivity() {
             this.db.collection("parties").document(this.selectedParty.id).set(selectedParty)
             this.alreadyInParty = true
             this.btnJoin.text = "Leave"
-            this.btnJoin.setBackgroundResource(R.drawable.btn_round_red)
+            this.btnJoin.background = getDrawable(R.color.colorpurpleM)
         } else {
             this.selectedParty.usersGoingRef.remove("5lKMPWEGgqOKAK6WOo2k")
             this.db.collection("parties").document(this.selectedParty.id).set(selectedParty)
             this.alreadyInParty = false
             this.btnJoin.text = "Join"
-            this.btnJoin.setBackgroundResource(R.drawable.round_btn)
+            this.btnJoin.background = getDrawable(R.color.colorDarkGray)
         }
     }
 
     fun findBuddy(view: View) {
-        val intent = Intent(this, FindBuddy::class.java)
+        val intent = Intent(this, FindBuddyActivity::class.java)
         startActivity(intent)
     }
 
@@ -302,9 +294,6 @@ class PartyInfoActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat("hh:mm:ss a")
         //this.location.text = "Latitude: ${mLastLocation.latitude} Longitude: ${mLastLocation.longitude}"
         this.addCooridate(mLastLocation.latitude, mLastLocation.longitude)
-        /*tvwTime.text = "Updated at: " + sdf.format(date)
-        tvwLatitude.text = "Latitude: " + mLastLocation.latitude
-        tvwLongitude.text = "Longitude: " + mLastLocation.longitude*/
     }
 
     protected fun startLocationUpdates() {
@@ -349,11 +338,6 @@ class PartyInfoActivity : AppCompatActivity() {
                 //this.refreshList(true)
                 Log.d("Firebase", "Coordinate has been updated")
 
-                //db.collection("parties").document("one")
-                /*.update(updates)
-                .addOnSuccessListener { Log.d("FirebaseHelper", "DocumentSnapshot succesfully") }
-                .addOnFailureListener { e -> Log.d("FirebaseHelper", e.message)}*/
-                //this.finish()
             }
             .addOnFailureListener(){e ->
                 Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
@@ -389,24 +373,6 @@ class PartyInfoActivity : AppCompatActivity() {
             }
         }
     }
-/*private fun ClickChip(genres:ArrayList<String>):Boolean{
-    addChips()
-
-    var isSelected = false
-    for(chip in ButtonsMusicGenres){
-        chip.setOnClickListener(){v ->
-            Log.d("Firebase", "${chip.text} ${genres[0]}")
-            Log.d("Firebase", "${((chip.text).toString())==genres[0]}")
-            if(genres.contains((chip.text).toString()))
-            {
-                Log.d("Result", "${isSelected}")
-                isSelected = true
-            }
-        }
-    }
-    Log.d("EndResult", "${isSelected}")
-return isSelected
-}*/
 
 
     override fun onStop() {

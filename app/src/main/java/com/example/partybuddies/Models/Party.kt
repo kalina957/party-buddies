@@ -1,4 +1,4 @@
-package com.example.partybuddies
+package com.example.partybuddies.Models
 
 import android.media.Image
 import com.google.firebase.firestore.model.value.IntegerValue

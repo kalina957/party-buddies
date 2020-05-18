@@ -1,7 +1,8 @@
-package com.example.partybuddies
+package com.example.partybuddies.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.partybuddies.R
 
 class ChatLogActivity : AppCompatActivity() {
 

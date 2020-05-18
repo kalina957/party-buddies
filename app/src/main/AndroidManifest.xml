@@ -12,19 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChatLogActivity"></activity>
-        <activity android:name=".FindBuddy" />
-        <activity android:name=".test" />
-        <activity android:name=".AddParty" />
-        <activity android:name=".PartyInfoActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".Activities.ChatLogActivity"></activity>
+        <activity android:name=".Activities.FindBuddyActivity" />
+        <activity android:name=".Activities.AddPartyActivity" />
+        <activity android:name=".Activities.PartyInfoActivity" />
+        <activity android:name=".Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Activities.MainActivity" />
     </application>
 
 </manifest>

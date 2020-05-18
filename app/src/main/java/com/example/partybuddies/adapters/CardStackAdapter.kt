@@ -1,4 +1,4 @@
-package com.example.partybuddies.adapters
+package com.example.partybuddies.Adapters
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,14 +11,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat.startActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.partybuddies.ChatLogActivity
+import com.example.partybuddies.Activities.ChatLogActivity
 import com.example.partybuddies.R
-import com.example.partybuddies.User
+import com.example.partybuddies.Models.User
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.find_buddy_fragment.view.*
 
 class CardStackAdapter(private var users: List<User> = emptyList()): RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
     private var mImageUrls = java.util.ArrayList<String>()

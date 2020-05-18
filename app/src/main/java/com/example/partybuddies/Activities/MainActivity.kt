@@ -1,24 +1,16 @@
-package com.example.partybuddies
+package com.example.partybuddies.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import com.bumptech.glide.Glide
-import com.google.firebase.firestore.FieldValue
+import com.example.partybuddies.Fragments.FindPartiesFragment
+import com.example.partybuddies.Fragments.YourPartiesFragment
+import com.example.partybuddies.R
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.party_info.*
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.widget.Button
-import java.time.LocalDateTime
-import java.util.*
+import com.example.partybuddies.Adapters.ViewPageAdapter
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +23,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val viewPageAdapter: ViewPageAdapter = ViewPageAdapter(supportFragmentManager)
+        val viewPageAdapter: ViewPageAdapter =
+            ViewPageAdapter(
+                supportFragmentManager
+            )
         viewPageAdapter.addFragment(FindPartiesFragment(), "Find Parties")
         viewPageAdapter.addFragment(YourPartiesFragment(), "Your Parties")
         this.viewPagerMainScreen.adapter = viewPageAdapter
@@ -50,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 //    }
 
     fun addParty(view: View){
-        val intent = Intent(this, AddParty::class.java)
+        val intent = Intent(this, AddPartyActivity::class.java)
         startActivity(intent)
     }
 

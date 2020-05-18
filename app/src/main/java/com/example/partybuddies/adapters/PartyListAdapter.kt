@@ -1,6 +1,7 @@
-package com.example.partybuddies
+package com.example.partybuddies.Adapters
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,12 +10,21 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat.startActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.partybuddies.Models.Party
+import com.example.partybuddies.Models.User
+import com.example.partybuddies.Activities.PartyInfoActivity
+import com.example.partybuddies.R
 import com.google.firebase.firestore.FirebaseFirestore
+
 import kotlinx.android.synthetic.main.find_parties_fragment.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.collections.ArrayList
 
 public class PartyListAdapter: RecyclerView.Adapter<PartyListAdapter.PartyHolder> {
@@ -33,7 +43,7 @@ public class PartyListAdapter: RecyclerView.Adapter<PartyListAdapter.PartyHolder
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PartyListAdapter.PartyHolder {
+    ): PartyHolder {
         this.mInflater = LayoutInflater.from(parent.context)
        var mItemView: View = this.mInflater.inflate(R.layout.party_item, parent, false)
         return PartyHolder(mItemView, this)
@@ -43,13 +53,15 @@ public class PartyListAdapter: RecyclerView.Adapter<PartyListAdapter.PartyHolder
         return this.parties.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: PartyListAdapter.PartyHolder, position: Int) {
         val mCurrent = this.parties[position]
         holder.nameView.text = mCurrent.name
-        holder.dateView.text = "${mCurrent.date}"
+        val date = LocalDate.parse("03-05-2009", DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+        holder.dateView.text = "${date.month} \n ${date.dayOfMonth}"
         holder.locationView.text = "${mCurrent.location}"
 //        holder.timeView.text = "Start: ${mCurrent.startTime} End: ${mCurrent.endTime}"
-        holder.descriptionView.text = "${mCurrent.description}"
+     //   holder.descriptionView.text = "${mCurrent.description}"
         val users: ArrayList<User> = ArrayList()
         this.db.collection("users").get().addOnSuccessListener { result ->
             for (document in result){
@@ -94,7 +106,7 @@ public class PartyListAdapter: RecyclerView.Adapter<PartyListAdapter.PartyHolder
         lateinit var dateView: TextView
         lateinit var locationView: TextView
         lateinit var timeView: TextView
-        lateinit var descriptionView: TextView
+//        lateinit var descriptionView: TextView
         lateinit var img:ImageView
         lateinit var imgPerson:ImageView
 
@@ -104,7 +116,7 @@ public class PartyListAdapter: RecyclerView.Adapter<PartyListAdapter.PartyHolder
             this.dateView = itemView.findViewById(R.id.textViewName)
             this.locationView = itemView.findViewById(R.id.textViewPartyLocation)
 //            this.timeView = itemView.findViewById(R.id.textViewDescription)
-            this.descriptionView = itemView.findViewById(R.id.textViewPartyDescription)
+//            this.descriptionView = itemView.findViewById(R.id.textViewPartyDescription)
             this.img = itemView.findViewById(R.id.imageViewPartyPicture)
             this.imgPerson = itemView.findViewById(R.id.imageViewPersonImg)
             this.mAdapter = adapter

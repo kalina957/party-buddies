@@ -1,4 +1,4 @@
-package com.example.partybuddies
+package com.example.partybuddies.Fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -12,16 +12,11 @@ import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.find_parties_fragment.*
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
-import android.text.format.DateUtils
-import android.widget.TextView
-import com.example.partybuddies.Fragments.DatePickerFragment
-import com.example.partybuddies.Fragments.DatePickerFragment2
-import kotlinx.android.synthetic.main.activity_add_party.*
-import java.text.DateFormat
+import com.example.partybuddies.Models.Party
+import com.example.partybuddies.R
+import com.example.partybuddies.Adapters.PartyListAdapter
 
 
 class FindPartiesFragment: Fragment {
@@ -177,7 +172,8 @@ class FindPartiesFragment: Fragment {
                         }
                         //this.parties.add(document.toObject(Party::class.java))
                 this.mRecyclerView = this.listViewParties
-                this.mAdapter = PartyListAdapter(this.parties)
+                this.mAdapter =
+                    PartyListAdapter(this.parties)
                 this.mRecyclerView.adapter = this.mAdapter
                 this.mRecyclerView.layoutManager = LinearLayoutManager(this.mRecyclerView.context)
                 Log.d("FirebaseHelper", "Succes")

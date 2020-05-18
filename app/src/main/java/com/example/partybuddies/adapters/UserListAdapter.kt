@@ -1,4 +1,4 @@
-package com.example.partybuddies.adapters
+package com.example.partybuddies.Adapters
 
 import android.location.Location
 import android.util.Log
@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.partybuddies.*
+import com.example.partybuddies.Models.User
+import com.example.partybuddies.adapters.RecyclerViewAdapter
+import kotlinx.android.synthetic.main.lv_items.view.*
 
 class UserListAdapter: RecyclerView.Adapter<UserListAdapter.UserHolder>  {
 
@@ -55,10 +58,10 @@ class UserListAdapter: RecyclerView.Adapter<UserListAdapter.UserHolder>  {
             var results: FloatArray = FloatArray(5)
             Location.distanceBetween(this.user.coordinate.latitude, this.user.coordinate.longitude, mCurrent.coordinate.latitude, mCurrent.coordinate.longitude, results)
             var r = "%.2f".format((results.get(0) / 1000))
-            holder.interestView.text = "${firstThreeGenres.joinToString()}.. ${r}km"
+          holder.itemView.textViewGPSDistance.text = r.plus(" km");
         }
         else{
-            holder.interestView.text = firstThreeGenres.joinToString()
+            holder.itemView.textViewGPSDistance.text = ""
         }
         holder.moreMusicGenres.text = ( mCurrent.musicGenres as ArrayList<String>).joinToString()
         mImageUrls = java.util.ArrayList()
@@ -78,8 +81,8 @@ class UserListAdapter: RecyclerView.Adapter<UserListAdapter.UserHolder>  {
 
 
         if (mCurrent.id == "5lKMPWEGgqOKAK6WOo2k"){
-            holder.notExpandable.setBackgroundResource(R.color.colorBlueIsh)
-            holder.expandableLayout.setBackgroundResource(R.color.colorBlueIsh)
+//            holder.notExpandable.setBackgroundResource(R.color.colorBlueIsh)
+  //          holder.expandableLayout.setBackgroundResource(R.color.colorBlueIsh)
         }
         else{
             holder.notExpandable.setBackgroundResource(R.color.colorWhite)
@@ -88,7 +91,7 @@ class UserListAdapter: RecyclerView.Adapter<UserListAdapter.UserHolder>  {
         val isExpanded : Boolean = this.users.get(position).isExpanded()
         fun visibility(isExpanded:Boolean): Int{
             if (isExpanded){
-                holder.interestView.text = ""
+          //      holder.interestView.text = ""
 
                 return View.VISIBLE
             }
@@ -105,10 +108,11 @@ class UserListAdapter: RecyclerView.Adapter<UserListAdapter.UserHolder>  {
 
         lateinit var mAdapter: UserListAdapter
         lateinit var nameView: TextView
-        lateinit var interestView: TextView
+//        lateinit var interestView: TextView
         lateinit var cityView: TextView
         lateinit var img: ImageView
         lateinit var expandableLayout: ConstraintLayout
+        lateinit var mainLayout: ConstraintLayout
         lateinit var notExpandable: ConstraintLayout
         lateinit var btnMessage: Button
         lateinit var moreMusicGenres: TextView
@@ -116,15 +120,16 @@ class UserListAdapter: RecyclerView.Adapter<UserListAdapter.UserHolder>  {
 
         constructor(itemView: View, adapter: UserListAdapter) : super(itemView){
             this.nameView = itemView.findViewById(R.id.textViewUserName)
-            this.interestView = itemView.findViewById(R.id.textViewInterests)
+         //   this.interestView = itemView.findViewById(R.id.textViewInterests)
             this.img = itemView.findViewById(R.id.imageViewUser)
             this.expandableLayout = itemView.findViewById(R.id.expandableLayout)
+            this.mainLayout = itemView.findViewById(R.id.constraintMain)
             this.notExpandable = itemView.findViewById(R.id.constraintSecondary)
             this.btnMessage = itemView.findViewById(R.id.btnMessage)
             this.moreMusicGenres = itemView.findViewById(R.id.tvMoreMusicGenres)
             this.recyclerView = itemView.findViewById(R.id.rvBands)
             //this.cityView = itemView.findViewById(R.id.textViewUserCity)
-            this.notExpandable.setOnClickListener(){v ->
+            this.mainLayout.setOnClickListener(){v ->
                 val user: User = users.get(adapterPosition)
                 user.setExpanded(!user.isExpanded())
                 notifyItemChanged(adapterPosition)
@@ -133,24 +138,24 @@ class UserListAdapter: RecyclerView.Adapter<UserListAdapter.UserHolder>  {
 //
             this.mAdapter = adapter
 
-            /*itemView.setOnClickListener { v ->
-                // get position
-                val pos = adapterPosition
-
-                // check if item still exists
-                if (pos != RecyclerView.NO_POSITION) {
-                    val clickedDataItem =
-                        Toast.makeText(
-                            v.context,
-                            "You clicked " + users.get(adapterPosition).name,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    /*var intent: Intent = Intent(itemView.context, PartyInfoActivity::class.java)
-
-                    intent.putExtra("party", users.get(adapterPosition))
-                    ContextCompat.startActivity(itemView.context, intent, Bundle())*/
-                }
-            }*/
+//            itemView.setOnClickListener { v ->
+//                // get position
+//                val pos = adapterPosition
+//
+//                // check if item still exists
+//                if (pos != RecyclerView.NO_POSITION) {
+//                    val clickedDataItem =
+//                        Toast.makeText(
+//                            v.context,
+//                            "You clicked " + users.get(adapterPosition).name,
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    /*var intent: Intent = Intent(itemView.context, PartyInfoActivity::class.java)
+//
+//                    intent.putExtra("party", users.get(adapterPosition))
+//                    ContextCompat.startActivity(itemView.context, intent, Bundle())*/
+//                }
+//            }
 
         }
 

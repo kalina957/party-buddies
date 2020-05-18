@@ -1,17 +1,10 @@
-package com.example.partybuddies
+package com.example.partybuddies.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import java.text.SimpleDateFormat
-import java.util.*
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
+import com.example.partybuddies.R
 
 
 class LoginActivity : AppCompatActivity() {
@@ -27,8 +20,4 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun test(view: View){
-        val intent = Intent(this, test::class.java)
-        startActivity(intent)
-    }
 }

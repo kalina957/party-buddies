@@ -1,32 +1,26 @@
 package com.example.partybuddies.Fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.partybuddies.*
+import com.example.partybuddies.Callbacks.SpotDiffCallback
+import com.example.partybuddies.Models.Coordinate
+import com.example.partybuddies.Models.Party
+import com.example.partybuddies.Models.User
 import com.example.partybuddies.R
-import com.example.partybuddies.adapters.CardStackAdapter
-import com.example.partybuddies.adapters.UserListAdapter
+import com.example.partybuddies.Adapters.CardStackAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
 import com.yuyakaido.android.cardstackview.*
-import kotlinx.android.synthetic.main.activity_party_info.*
 import kotlinx.android.synthetic.main.find_buddy_fragment.*
-import kotlinx.android.synthetic.main.find_buddy_fragment.view.*
 
 class FindBuddy_fragment(selectedParty: Party): Fragment(), CardStackListener {
 
@@ -191,7 +185,8 @@ class FindBuddy_fragment(selectedParty: Party): Fragment(), CardStackListener {
     private fun paginate() {
         val old = adapter.getSpots()
         val new = old.plus(createSpots())
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -200,7 +195,8 @@ class FindBuddy_fragment(selectedParty: Party): Fragment(), CardStackListener {
     private fun reload() {
         val old = adapter.getSpots()
         val new = createSpots()
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -214,7 +210,8 @@ class FindBuddy_fragment(selectedParty: Party): Fragment(), CardStackListener {
                 add(manager.topPosition, createSpot())
             }
         }
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -226,7 +223,8 @@ class FindBuddy_fragment(selectedParty: Party): Fragment(), CardStackListener {
             addAll(old)
             addAll(List(size) { createSpot() })
         }
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -244,7 +242,8 @@ class FindBuddy_fragment(selectedParty: Party): Fragment(), CardStackListener {
                 removeAt(manager.topPosition)
             }
         }
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -262,7 +261,8 @@ class FindBuddy_fragment(selectedParty: Party): Fragment(), CardStackListener {
                 removeAt(this.size - 1)
             }
         }
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -289,7 +289,8 @@ class FindBuddy_fragment(selectedParty: Party): Fragment(), CardStackListener {
             add(manager.topPosition, last)
             add(first)
         }
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -297,9 +298,12 @@ class FindBuddy_fragment(selectedParty: Party): Fragment(), CardStackListener {
 
     private fun createSpot(): User {
         return User(
-            BandsRef = arrayListOf("https://firebasestorage.googleapis.com/v0/b/party-buddies.appspot.com/o/aerosmith.jpg?alt=media&token=13ad7d17-58be-4e82-abfc-13631043da42","https://firebasestorage.googleapis.com/v0/b/party-buddies.appspot.com/o/sabbath.png?alt=media&token=2813ed10-df7d-4df7-9476-455178d39ebd"),
-            userMusicGenres = arrayListOf("Rock","Metal","Grunge"),
-            id ="5lKMPWEGgqOKAK6WOo2k",
+            BandsRef = arrayListOf(
+                "https://firebasestorage.googleapis.com/v0/b/party-buddies.appspot.com/o/aerosmith.jpg?alt=media&token=13ad7d17-58be-4e82-abfc-13631043da42",
+                "https://firebasestorage.googleapis.com/v0/b/party-buddies.appspot.com/o/sabbath.png?alt=media&token=2813ed10-df7d-4df7-9476-455178d39ebd"
+            ),
+            userMusicGenres = arrayListOf("Rock", "Metal", "Grunge"),
+            id = "5lKMPWEGgqOKAK6WOo2k",
             city = "Eindhoven",
             name = "Kalina",
             imgRef = "https://firebasestorage.googleapis.com/v0/b/party-buddies.appspot.com/o/girl3.jpg?alt=media&token=806a6ab5-04ee-48e3-8278-73807760fe50",

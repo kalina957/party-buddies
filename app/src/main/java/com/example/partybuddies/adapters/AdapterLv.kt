@@ -1,4 +1,4 @@
-package com.example.partybuddies.adapters
+package com.example.partybuddies.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -5,9 +5,9 @@
     android:id="@+id/t"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+   app:layout_constraintCircleRadius="@dimen/corner_radius_default">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarPartyInfo"
@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             android:background="@color/colorTransparent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_scrollFlags="scroll|enterAlways"
             tools:layout_editor_absoluteY="-2dp" />
@@ -46,7 +45,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintT"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="450dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <HorizontalScrollView
@@ -54,13 +53,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="2dp"
             android:keepScreenOn="false"
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPeopleGoing">
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionV">
 
             <com.google.android.material.chip.ChipGroup
                 android:layout_width="wrap_content"
@@ -198,12 +197,48 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/people_that_are_going"
-            android:textSize="20sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Party Name"
+            android:textColor="#090909"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewDescriptionS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Description"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPeopleGoing" />
+
+        <TextView
+            android:id="@+id/textViewParticipants"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:text="Participants"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/listViewMembers"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollViewBands" />
+
+        <!--    <ListView-->
+        <!--        android:id="@+id/listViewMembers"-->
+        <!--        android:layout_width="357dp"-->
+        <!--        android:layout_height="274dp"-->
+        <!--        android:layout_below="@+id/textView2"-->
+        <!--        android:layout_marginStart="24dp"-->
+        <!--        android:layout_marginTop="16dp"-->
+        <!--        android:background="#673AB7" />-->
 
         <include
             android:id="@+id/listViewMembers"
@@ -217,23 +252,17 @@
             android:dividerHeight="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollViewBands" />
-    <!--    <ListView-->
-    <!--        android:id="@+id/listViewMembers"-->
-    <!--        android:layout_width="357dp"-->
-    <!--        android:layout_height="274dp"-->
-    <!--        android:layout_below="@+id/textView2"-->
-    <!--        android:layout_marginStart="24dp"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:background="#673AB7" />-->
+            app:layout_constraintTop_toBottomOf="@id/scrollViewBands"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Switch
             android:id="@+id/switchTinderMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
             android:text="@string/tinder_mode"
             android:textColor="@color/colorBlack"
             app:layout_constraintEnd_toEndOf="parent"
@@ -244,12 +273,44 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
+            android:translationZ="100dp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/listViewMembers"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPeopleGoing"
-            app:layout_constraintVertical_bias="0.0"></FrameLayout>
+            app:layout_constraintTop_toBottomOf="@+id/switchTinderMode"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textViewDescriptionV"
+            android:layout_width="239dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionS" />
+
+        <Button
+            android:id="@+id/btnJoin"
+            android:layout_width="116dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="10dp"
+            android:background="#40FFFFFF"
+            android:onClick="joinParty"
+            android:outlineAmbientShadowColor="#660A0A0A"
+            android:outlineProvider="paddedBounds"
+            android:outlineSpotShadowColor="#312626"
+            android:text="Join"
+            android:textAllCaps="false"
+            android:textColorHint="#00FD1313"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/scrollViewBands"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -4,11 +4,7 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.widget.DatePicker
-import android.widget.TextView
 import androidx.fragment.app.DialogFragment
-import com.example.partybuddies.FindPartiesFragment
-import kotlinx.android.synthetic.main.activity_add_party.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class DatePickerFragment2(f: FindPartiesFragment): DialogFragment(), DatePickerDialog.OnDateSetListener {

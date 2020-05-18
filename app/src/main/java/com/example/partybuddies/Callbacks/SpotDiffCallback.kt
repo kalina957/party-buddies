@@ -1,6 +1,7 @@
-package com.example.partybuddies
+package com.example.partybuddies.Callbacks
 
 import androidx.recyclerview.widget.DiffUtil
+import com.example.partybuddies.Models.User
 
 class SpotDiffCallback(
     private val old: List<User>,

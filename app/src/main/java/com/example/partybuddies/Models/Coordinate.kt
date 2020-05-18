@@ -1,4 +1,4 @@
-package com.example.partybuddies
+package com.example.partybuddies.Models
 
 import java.io.Serializable
 

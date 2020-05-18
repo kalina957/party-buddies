@@ -1,4 +1,4 @@
-package com.example.partybuddies.adapters;
+package com.example.partybuddies.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,9 +9,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.partybuddies.R;
-import com.instabug.library.Instabug;
-
-import java.util.ArrayList;
 
 public class ImageAdapterBand extends BaseAdapter {
     Context ctx;

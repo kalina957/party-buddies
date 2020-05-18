@@ -1,4 +1,4 @@
-package com.example.partybuddies
+package com.example.partybuddies.Fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.partybuddies.Models.Party
+import com.example.partybuddies.R
+import com.example.partybuddies.Adapters.PartyListAdapter
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.find_parties_fragment.*
 import kotlinx.android.synthetic.main.your_parties_fragment.*
 
 class YourPartiesFragment: Fragment {
@@ -56,7 +58,8 @@ class YourPartiesFragment: Fragment {
         this.db.collection("parties").get()
             .addOnSuccessListener { result ->
                 for (document in result){
-                    var party: Party = document.toObject(Party::class.java)
+                    var party: Party = document.toObject(
+                        Party::class.java)
                     if (party.userRef == "5lKMPWEGgqOKAK6WOo2k"){
                         this.parties.add(party)
                     }
@@ -67,7 +70,8 @@ class YourPartiesFragment: Fragment {
                     }
                 }
                 this.mRecyclerView = this.listviewYourParties
-                this.mAdapter = PartyListAdapter(this.parties)
+                this.mAdapter =
+                    PartyListAdapter(this.parties)
                 this.mRecyclerView.adapter = this.mAdapter
                 this.mRecyclerView.layoutManager = LinearLayoutManager(this.mRecyclerView.context)
                 Log.d("FirebaseHelper", "Succes")

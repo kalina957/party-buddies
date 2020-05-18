@@ -1,4 +1,4 @@
-package com.example.partybuddies
+package com.example.partybuddies.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,13 +12,17 @@ import androidx.core.view.GravityCompat.*
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
-import com.example.partybuddies.adapters.CardStackAdapter
+import com.example.partybuddies.Models.Coordinate
+import com.example.partybuddies.Models.User
+import com.example.partybuddies.R
+import com.example.partybuddies.Callbacks.SpotDiffCallback
+import com.example.partybuddies.Adapters.CardStackAdapter
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.yuyakaido.android.cardstackview.*
 
 
-class FindBuddy : AppCompatActivity(), CardStackListener {
+class FindBuddyActivity : AppCompatActivity(), CardStackListener {
 
     private val drawerLayout by lazy { findViewById<DrawerLayout>(R.id.drawer_layout) }
     private val cardStackView by lazy { findViewById<CardStackView>(R.id.card_stack_view) }
@@ -161,7 +165,8 @@ class FindBuddy : AppCompatActivity(), CardStackListener {
     private fun paginate() {
         val old = adapter.getSpots()
         val new = old.plus(createSpots())
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -170,7 +175,8 @@ class FindBuddy : AppCompatActivity(), CardStackListener {
     private fun reload() {
         val old = adapter.getSpots()
         val new = createSpots()
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -184,7 +190,8 @@ class FindBuddy : AppCompatActivity(), CardStackListener {
                 add(manager.topPosition, createSpot())
             }
         }
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -196,7 +203,8 @@ class FindBuddy : AppCompatActivity(), CardStackListener {
             addAll(old)
             addAll(List(size) { createSpot() })
         }
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -214,7 +222,8 @@ class FindBuddy : AppCompatActivity(), CardStackListener {
                 removeAt(manager.topPosition)
             }
         }
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -232,7 +241,8 @@ class FindBuddy : AppCompatActivity(), CardStackListener {
                 removeAt(this.size - 1)
             }
         }
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -259,7 +269,8 @@ class FindBuddy : AppCompatActivity(), CardStackListener {
             add(manager.topPosition, last)
             add(first)
         }
-        val callback = SpotDiffCallback(old, new)
+        val callback =
+            SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setSpots(new)
         result.dispatchUpdatesTo(adapter)
@@ -267,8 +278,11 @@ class FindBuddy : AppCompatActivity(), CardStackListener {
 
     private fun createSpot(): User {
         return User(
-            BandsRef = arrayListOf("https://firebasestorage.googleapis.com/v0/b/party-buddies.appspot.com/o/aerosmith.jpg?alt=media&token=13ad7d17-58be-4e82-abfc-13631043da42","https://firebasestorage.googleapis.com/v0/b/party-buddies.appspot.com/o/sabbath.png?alt=media&token=2813ed10-df7d-4df7-9476-455178d39ebd"),
-            userMusicGenres  = arrayListOf("Rock","Metal","Blues","Funk"),
+            BandsRef = arrayListOf(
+                "https://firebasestorage.googleapis.com/v0/b/party-buddies.appspot.com/o/aerosmith.jpg?alt=media&token=13ad7d17-58be-4e82-abfc-13631043da42",
+                "https://firebasestorage.googleapis.com/v0/b/party-buddies.appspot.com/o/sabbath.png?alt=media&token=2813ed10-df7d-4df7-9476-455178d39ebd"
+            ),
+            userMusicGenres = arrayListOf("Rock", "Metal", "Blues", "Funk"),
             id = "5lKMPWEGgqOKAK6WOo2k",
             city = "Utrecht",
             name = "Kim",
@@ -293,7 +307,20 @@ class FindBuddy : AppCompatActivity(), CardStackListener {
             this.db.collection("users").get()
                 .addOnSuccessListener { result ->
                     for (document in result){
-                        spots.add(User( BandsRef = arrayListOf("https://firebasestorage.googleapis.com/v0/b/party-buddies.appspot.com/o/aerosmith.jpg?alt=media&token=13ad7d17-58be-4e82-abfc-13631043da42","https://firebasestorage.googleapis.com/v0/b/party-buddies.appspot.com/o/sabbath.png?alt=media&token=2813ed10-df7d-4df7-9476-455178d39ebd"),userMusicGenres = document.get("Music Genres") as ArrayList<String>,id = document.getString("id").toString(),city = document.getString("city").toString(),name = document.getString("name").toString(),imgRef = document.getString("imgRef").toString(), coordinate = document.get("coordinate") as Coordinate))
+                        spots.add(
+                            User(
+                                BandsRef = arrayListOf(
+                                    "https://firebasestorage.googleapis.com/v0/b/party-buddies.appspot.com/o/aerosmith.jpg?alt=media&token=13ad7d17-58be-4e82-abfc-13631043da42",
+                                    "https://firebasestorage.googleapis.com/v0/b/party-buddies.appspot.com/o/sabbath.png?alt=media&token=2813ed10-df7d-4df7-9476-455178d39ebd"
+                                ),
+                                userMusicGenres = document.get("Music Genres") as ArrayList<String>,
+                                id = document.getString("id").toString(),
+                                city = document.getString("city").toString(),
+                                name = document.getString("name").toString(),
+                                imgRef = document.getString("imgRef").toString(),
+                                coordinate = document.get("coordinate") as Coordinate
+                            )
+                        )
                     }
                     this.adapter = CardStackAdapter(spots)
                     this.setupNavigation()
